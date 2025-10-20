@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiments</title>
+    <link rel="icon" href="avatar.png" type="image/png">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="experiments.html">Experiments</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section>
+            <h2>Picture Element</h2>
+            <picture>
+                <img src="avatar.png" alt="Responsive Avatar" width="150" height="150">
+            </picture>
+        </section>
+        
+        <section>
+            <h2>Audio Element</h2>
+            <audio controls>
+                <source src="placeholder-audio.mp3" type="audio/mpeg">
+            </audio>
+        </section>
+        
+        <section>
+            <h2>Video Element</h2>
+            <video width="320" height="240" controls>
+                <source src="placeholder-video.mp4" type="video/mp4">
+            </video>
+        </section>
+        
+        <section>
+            <h2>Canvas Element</h2>
+            <canvas id="experiment-canvas" width="300" height="150" style="border: 1px solid black;">
+            </canvas>
+            
+            <script>
+                const canvas = document.getElementById('experiment-canvas');
+                const ctx = canvas.getContext('2d');
+                
+                ctx.fillStyle = 'lightblue';
+                ctx.fillRect(0, 0, 300, 150);
+                
+                ctx.fillStyle = 'darkblue';
+                ctx.font = '20px Arial';
+                ctx.fillText('Canvas Experiment', 50, 50);
+                
+                ctx.fillStyle = 'red';
+                ctx.fillRect(50, 70, 100, 50);
+                ctx.fillStyle = 'green';
+                ctx.beginPath();
+                ctx.arc(200, 95, 30, 0, 2 * Math.PI);
+                ctx.fill();
+            </script>
+        </section>
+        
+        <section>
+            <h2>Template Element</h2>
+            <p>The template below contains reusable content (hidden by default):</p>
+            
+            <template id="experiment-template">
+                <article>
+                    <h3>Template Content</h3>
+                    <p>This content is defined in a template element.</p>
+                    <button>Template Button</button>
+                </article>
+            </template>
+            
+        </section>
+    </main>
+</body>
+</html>

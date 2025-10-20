@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="icon" href="avatar.png" type="image/png">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="experiments.html">Experiments</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <h1>Contact Me</h1>
+        
+        <div id="resume-section">
+            <h2>Resume</h2>
+            <img src="Resume_placeholder.jpeg" alt="Resume - [Your Name]">
+        </div>
+        
+        <div id="contact-info">
+            <h2>Get In Touch</h2>
+            <p><strong>Email:</strong> <em>[ethankook1@gmail.com]</em></p>
+            <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/ethankook">[ethankook]</a></p>
+            <p><strong>GitHub:</strong> <a href="https://github.com/ethankook">[ethankook]</a></p>
+        </div>
+        
+        <section>
+            <h2>Send Me a Message</h2>
+            <form>
+                <fieldset>
+                    <legend>Contact Form</legend>
+                    
+                    <label for="name">Name:</label><br>
+                    <input type="text" id="name" name="name"><br><br>
+                    
+                    <label for="email">Email:</label><br>
+                    <input type="email" id="email" name="email"><br><br>
+                    
+                    <label for="message">Message:</label><br>
+                    <textarea id="message" name="message" rows="5" cols="50"></textarea><br><br>
+                    
+                    <button type="submit">Send Message</button>
+                </fieldset>
+            </form>
+            
+            <!-- confirmation when leaving page with unsaved form data -->
+            <dialog>
+                <h3>Unsaved Changes</h3>
+                <p>You have unsaved changes in the contact form. Are you sure you want to leave?</p>
+                <button>Stay on Page</button>
+                <button>Leave Anyway</button>
+            </dialog>
+        </section>
+    </main>
+    
+    <footer>
+        <p><span>Copyright</span> 2025 Ethan Kook. <br>
+        Built with HTML only<noscript>  (JavaScript disabled)</noscript></p>
+    </footer>
+</body>
+</html>

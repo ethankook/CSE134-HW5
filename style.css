@@ -82,6 +82,19 @@ footer {
   list-style: none;
   padding: 0;
   width: 80%;
+  margin: 0 auto;
+}
+
+#skills li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: var(--spacing-unit);
+}
+
+#skills progress {
+  width: 100%;
+  max-width: 400px; /* Or another max-width you prefer */
 }
 
 @keyframes draw-line {
@@ -107,6 +120,15 @@ footer {
       color: var(--secondary-color);
     }
   }
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.25rem;
 }
 
 form {
@@ -240,10 +262,6 @@ label:has(+ input:required:invalid) {
 
   main {
     padding: var(--spacing-unit);
-  }
-
-  #skills ol {
-    width: 100%;
   }
 
   form label, form input, form textarea, form button {

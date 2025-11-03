@@ -161,13 +161,6 @@ label:has(+ input:required:invalid) {
   font-weight: bold;
 }
 
-@scope (#experiment-canvas) {
-  :scope {
-    border: 2px dashed var(--accent-color) !important;
-    box-shadow: 0 0 10px var(--accent-color);
-  }
-}
-
 #projects {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));

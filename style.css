@@ -139,6 +139,38 @@ footer {
   color: #b00020
 }
 
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.5rem 0.6rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font: inherit;
+  box-sizing: border-box;
+}
+
+.form-group input:required:placeholder-shown,
+.form-group textarea:required:placeholder-shown {
+  border-color: #999;
+}
+
+.form-group input:valid,
+.form-group textarea:valid {
+  border-color: #1b5e20;
+}
+
+.form-group input:user-invalid,
+.form-group textarea:user-invalid {
+  border-color: #b00020;
+  background-color: #ffecec;
+}
+
+
+.form-group input:invalid,
+.form-group textarea:invalid {
+  border-color: #b00020;
+}
+
 form {
   background-color: color-mix(in srgb, var(--background-color) 80%, white);
   padding: var(--spacing-unit);

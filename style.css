@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 :root {
-  --primary-color: #3f3f3f;
-  --secondary-color: #ffd900d3;
-  --background-color: #ffffff;
+  --primary-color: #552834;
+  --secondary-color: #4a2855;
+  --background-color: #F7F4F4;
   --text-color: var(--primary-dark, #333);
-  --accent-color: #5d5d5d;
+  --accent-color: #654666;
   --border-radius: 8px;
   --spacing-unit: 1rem;
 }
@@ -25,7 +25,7 @@ body {
 main {
   flex-grow: 1;
   padding: calc(var(--spacing-unit) * 1.5);
-  background: white;
+  background: var(--background-color);
   border-radius: var(--border-radius);
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
@@ -124,11 +124,19 @@ footer {
 
 .form-group {
   margin-bottom: 1rem;
+  display: flexbox;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .form-group label {
   display: block;
   margin-bottom: 0.25rem;
+}
+
+.form-group label::after{
+  content: " *";
+  color: #b00020
 }
 
 form {
@@ -156,10 +164,7 @@ form button {
   }
 }
 
-label:has(+ input:required:invalid) {
-  color: #d9534f;
-  font-weight: bold;
-}
+
 
 #projects {
   display: grid;

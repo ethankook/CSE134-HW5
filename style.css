@@ -444,16 +444,17 @@ project-card {
   inset: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: flex-start;
-  gap: 0.4rem;
+  gap: 0.5rem;
   padding: calc(var(--spacing-unit) * 0.6);
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.35), transparent);
+  background: rgba(0, 0, 0, 0.9);
   color: #ffffff;
   opacity: 0;
   transform: translateY(12%);
   transition: opacity 0.25s ease, transform 0.25s ease;
   font-size: 0.85rem;
+  overflow-y: auto;
 }
 
 .project-card:hover .card-overlay,
@@ -465,20 +466,13 @@ project-card {
 .card-overlay h2 {
   font-size: 1rem;
   font-weight: 700;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  margin: 0 0 0.2rem 0;
+  margin: 0 0 0.25rem 0;
 }
 
 .card-overlay p {
-  font-size: 0.8rem;
-  line-height: 1.4;
-  margin: 0 0 0.4rem 0;
-  max-height: 3.4em;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0 0 0.75rem 0;
 }
 
 .card-overlay a {
@@ -486,15 +480,16 @@ project-card {
   padding: 0.35rem 0.9rem;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.85);
-  background: rgba(0, 0, 0, 0.25);
-  color: inherit;
+  background: rgba(0, 0, 0, 0.4);
+  color: #ffffff;
   text-decoration: none;
   font-size: 0.8rem;
 }
 
 .card-overlay a:hover {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
 }
+
 
 body.has-modal {
   overflow: hidden;

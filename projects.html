@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,15 +7,13 @@
     <link rel="icon" href="images/fav.png" type="image/png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
 </head>
-
 <body>
     <header>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="projects.html">Projects</a></li>
+                <li><a href="projects.html" aria-current="page">Projects</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
@@ -34,302 +31,29 @@
         <h1>Projects</h1>
 
         <section id="projects">
-            <article id="NumArt">
-                <h3>NumArt</h3>
-                <a href="https://github.com/ethankook/numart-backend" target="_blank" class="github-link">
-                    Github Repository <i class="fab fa-github"></i>
-                </a>
+            <p class="projects-intro">
+                Click a button below to load project cards from either localStorage or a remote JSON source.
+                Each project is rendered as a reusable <code>&lt;project-card&gt;</code> web component.
+            </p>
 
-                <p><strong>Overview:</strong> NumArt is an end-to-end system that transforms a user’s uploaded image
-                    into a printable paint-by-numbers kit and, optionally, dispenses the required paint colors using a
-                    hardware mixer. The software pipeline handles color quantization, segmentation, and vectorization to
-                    produce a clean, scalable SVG output, while the hardware setup uses Raspberry Pi–controlled
-                    peristaltic pumps to mix and dispense paint according to the generated palette. The project combines
-                    computer vision, clustering algorithms, and embedded systems for a full digital-to-physical creative
-                    workflow.</p>
+            <div class="project-controls">
+                <button type="button" id="load-local">Load Local</button>
+                <button type="button" id="load-remote">Load Remote</button>
+            </div>
 
-                <picture>
-                    <source srcset="images/NumArt-Demo.avif" type="image/avif">
-                    <source srcset="images/NumArt-Demo.webp" type="image/webp">
-                    <source srcset="images/NumArt-Demo.png" type="image/png">
-                    <img src="images/NumArt-Demo.png"
-                        alt="A demo of the NumArt project, showing a photo of a dog after running the NumArt software on it."
-                        class="project-image" loading="lazy" decoding="async">
-                </picture>
-                <p><strong>Key Features:</strong></p>
-                <ul>
-                    <li><strong>Image Quantization:</strong> Uses K-Means clustering (via scikit-learn) to reduce an
-                        input image to <em>k</em> representative colors. Each pixel is assigned to the nearest cluster
-                        centroid, creating a simplified color palette ideal for painting.</li>
-                    <li><strong>Label Map Generation:</strong> The quantized image is converted into a 2D label map,
-                        where each pixel corresponds to its color index. This map is cleaned using majority filters and
-                        region-merging algorithms to remove noise and ensure paintable areas.</li>
-                    <li><strong>Vectorization & SVG Export:</strong> The cleaned label map is converted into vector
-                        paths, with each region assigned a number and lightly filled for visibility. The final SVG
-                        includes a color legend and can be printed directly as a paint-by-numbers template.</li>
-                    <li><strong>Hardware Integration:</strong> A Raspberry Pi 4 controls five 12V peristaltic pumps
-                        connected to color reservoirs (Red, Green, Blue, White, Black). The pumps precisely dispense
-                        paint volumes to recreate the digital palette physically.</li>
-                    <li><strong>Python Driver & FastAPI Backend:</strong> A Python FastAPI service coordinates the
-                        process—from receiving an image upload to processing it through the quantization pipeline and
-                        sending dosing instructions to the Pi for paint mixing. The Modbus or GPIO driver handles
-                        real-time pump control and calibration.</li>
-                    <li><strong>Physical Assembly:</strong> Pumps are mounted in an enclosure and connected via silicone
-                        tubing to color reservoirs and a magnetic stirrer. The Raspberry Pi, relay board, and 12V PSU
-                        are wired with shared ground and secured for safety and reliability.</li>
-                </ul>
+            <p id="projects-status" class="projects-status" aria-live="polite"></p>
 
-                <p><strong>Technology Used:</strong> Python 3.12, FastAPI, NumPy, Pillow, scikit-learn (K-Means),
-                    OpenCV, svgwrite, Raspberry Pi 4, peristaltic pumps, relay modules, and 12V DC power electronics.
-                </p>
-
-                <p><strong>Process:</strong> The project begins with image validation and downsizing before applying
-                    K-Means to extract dominant colors. The palette and label map are refined with region cleanup and
-                    distance transforms to ensure each zone is large enough to paint. The resulting vector outlines are
-                    exported as a numbered SVG. In parallel, the Raspberry Pi interprets the same palette and activates
-                    each pump for a calibrated duration to produce corresponding paint mixtures in small beakers with
-                    magnetic stirrers. The system can handle up to five base colors and generate custom blends
-                    automatically.</p>
-
-                <p><strong>Challenges:</strong> Achieving clean segmentation for complex images, balancing speed versus
-                    accuracy in K-Means clustering, preventing color bleeding between small regions, and synchronizing
-                    hardware control for consistent dosing were key engineering hurdles. Additionally, ensuring
-                    repeatable pump calibration and stable power distribution on the Pi relay circuit required careful
-                    tuning and testing.</p>
-
-            </article>
-
-            <article id="RISC">
-                <h3>RISC Processor</h3>
-                <a href="https://github.com/ethankook/RISC.git" target="_blank" class="github-link">
-                    Github Repository <i class="fab fa-github"></i>
-                </a>
-
-                <p><strong>Overview:</strong> This project involved the design and implementation of a custom RISC-style
-                    processor with 8 general-purpose registers and a compact instruction set architecture. The goal was
-                    to build a minimal yet functional CPU capable of executing arithmetic, logic, and branch
-                    instructions, including support for 16-bit integer and 16-bit IEEE-754 floating-point data
-                    conversions and addition/subtraction. We used the processor's custom instruction set to write a
-                    program in Assembly Language to handle the conversion and computations. A custom compiler for the
-                    instruction set, to convert the program from ASM to machine code was also created using C++. </p>
-
-                <p><strong>Key Features:</strong></p>
-                <ul>
-                    <li>Register-register / Load-store architecture with direct and indirect addressing</li>
-                    <li>Optimized register file design, prioritizing registers 0 to 3 for frequently accessed
-                        operations, while 4 to 7 are utilized for storage. Special handling of 0 as the implied
-                        destination for certain branch comparisons.</li>
-                    <li>LUT-based conditional branching and control flow, storing up to 32 jump locations</li>
-                    <li>Custom instructions for logical shifts, bit manipulation, and subroutine handling</li>
-                    <li>Logical shifts can span one or two registers.</li>
-                    <li>Support for 16-bit integer and 16-bit IEEE-754 floating-point data types</li>
-                    <li>8-bit wide, 256-byte deep memory, to support indirect addressing during memory access
-                        instructions</li>
-                    <li>The ALU also supports a comparison operation. Given two registers (R0 and R1), it will compare
-                        the data in these registers and return one of three values..</li>
-                    <li>Control unit to decode the instruction code (op-code) and manage the flow of data across the
-                        data path.</li>
-
-                </ul>
-
-                <p><strong>Technology Used:</strong> Verilog, SystemVerilog, C++, ModelSim, waveform analysis tools,
-                    Assembly Language(ASM)</p>
-
-                <p><strong>Process:</strong> The processor architecture was designed from the ground up, starting with
-                    the instruction set and register file. An ALU module was built to support both standard arithmetic
-                    and custom bitwise operations. A memory subsystem handled instruction and data memory independently.
-                    Testing was performed with custom testbenches and waveform outputs to validate correctness at each
-                    stage.</p>
-
-                <p><strong>Challenges:</strong> Addressing edge cases in floating-point conversion, handling operand
-                    ordering in memory instructions, and eliminating infinite loop scenarios in early branch logic
-                    prototypes.</p>
-
-
-
-                <p><strong>Instruction Set Overview:</strong></p>
-                <div class="table-wrapper">
-                    <table class="instruction-set-table">
-                        <thead>
-                            <tr>
-                                <th>Instruction</th>
-                                <th>Type</th>
-                                <th>Description</th>
-                                <th>Bit Breakdown</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><code>and</code></td>
-                                <td>R</td>
-                                <td>Logical AND between two registers</td>
-                                <td>8: branch (0), 7–6: src, 5–4: dest, 3–0: 0000</td>
-                            </tr>
-                            <tr>
-                                <td><code>or</code></td>
-                                <td>R</td>
-                                <td>Logical OR between two registers</td>
-                                <td>8: branch (0), 7–6: src, 5–4: dest, 3–0: 0001</td>
-                            </tr>
-                            <tr>
-                                <td><code>lsl</code></td>
-                                <td>R</td>
-                                <td>Logical shift left</td>
-                                <td>8: branch (0), 7–6: src, 5–4: dest, 3–0: 0010</td>
-                            </tr>
-                            <tr>
-                                <td><code>lsr</code></td>
-                                <td>R</td>
-                                <td>Logical shift right</td>
-                                <td>8: branch (0), 7–6: src, 5–4: dest, 3–0: 0011</td>
-                            </tr>
-                            <tr>
-                                <td><code>add</code></td>
-                                <td>R</td>
-                                <td>Add two registers</td>
-                                <td>8: branch (0), 7–6: src, 5–4: dest, 3–0: 0100</td>
-                            </tr>
-                            <tr>
-                                <td><code>sub</code></td>
-                                <td>R</td>
-                                <td>Subtract one register from another</td>
-                                <td>8: branch (0), 7–6: src, 5–4: dest, 3–0: 1101</td>
-                            </tr>
-                            <tr>
-                                <td><code>neg</code></td>
-                                <td>R</td>
-                                <td>Negate register value</td>
-                                <td>8: branch (0), 7–6: src, 5–4: dest, 3–0: 0101</td>
-                            </tr>
-                            <tr>
-                                <td><code>ldr</code></td>
-                                <td>R</td>
-                                <td>Load value from memory</td>
-                                <td>8: branch (0), 7–6: addr, 5–4: dest, 3–0: 0110</td>
-                            </tr>
-                            <tr>
-                                <td><code>str</code></td>
-                                <td>R</td>
-                                <td>Store register to memory</td>
-                                <td>8: branch (0), 7–6: src, 5–4: addr, 3–0: 0111</td>
-                            </tr>
-                            <tr>
-                                <td><code>mov</code></td>
-                                <td>R</td>
-                                <td>Move immediate to register</td>
-                                <td>8: branch (0), 7–4: value, 3–0: 1000</td>
-                            </tr>
-                            <tr>
-                                <td><code>mot</code></td>
-                                <td>R</td>
-                                <td>Move to/from R0</td>
-                                <td>8: branch (0), 7–5: reg, 4: direction, 3–0: 1001</td>
-                            </tr>
-                            <tr>
-                                <td><code>lso</code></td>
-                                <td>R</td>
-                                <td>1-bit logical shift</td>
-                                <td>8: branch (0), 7–5: reg, 4: L/R, 3–0: 1010</td>
-                            </tr>
-                            <tr>
-                                <td><code>cfb</code></td>
-                                <td>R</td>
-                                <td>Check first bit</td>
-                                <td>8: branch (0), 7–5: reg, 4: dead, 3–0: 1011</td>
-                            </tr>
-                            <tr>
-                                <td><code>cmp</code></td>
-                                <td>R</td>
-                                <td>Compare registers</td>
-                                <td>8: branch (0), 7–6: dest, 5–4: src, 3–0: 1100</td>
-                            </tr>
-                            <tr>
-                                <td><code>mbs</code></td>
-                                <td>R</td>
-                                <td>Move bits</td>
-                                <td>8: branch (0), 7–5: reg, 4: bit count, 3–0: 1110</td>
-                            </tr>
-                            <tr>
-                                <td><code>beq</code></td>
-                                <td>B</td>
-                                <td>Branch if equal</td>
-                                <td>8: branch (1), 7–6: reg, 5: 0, 4–0: LUT index</td>
-                            </tr>
-                            <tr>
-                                <td><code>bne</code></td>
-                                <td>B</td>
-                                <td>Branch if not equal</td>
-                                <td>8: branch (1), 7–6: reg, 5: 1, 4–0: LUT index</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </article>
-
-            <article id="PokeCollect">
-                <h3>PokeCollect</h3>
-
-                <a href="https://github.com/cse110-sp25-group20/cse110-sp25-group20.git" target="_blank"
-                    class="github-link">
-                    GitHub Repository <i class="fab fa-github"></i>
-                </a>
-
-                <p><strong>Overview:</strong> PokéCollect is a full-stack, component-based web application that enables
-                    users to browse, collect, and organize Pokémon cards from all generations. Designed for TCG
-                    collectors, the app supports real-time data integration, responsive UI, and persistent offline
-                    access using progressive web app (PWA) features.</p>
-
-                <img src="images/demo.gif"
-                    alt="A demonstration of the PokeCollect app showing card search and collection features."
-                    class="project-image" width="600" height="338" loading="lazy" decoding="async">
-
-                <p><strong>Key Features:</strong></p>
-                <ul>
-                    <li>Dynamic card search and retrieval with high-quality metadata (HP, rarity, set, pricing)</li>
-                    <li>Stateful collection management and binder customization by clicking to assign cards to specific
-                        slots</li>
-                    <li>Service workers and API fallback for robust offline functionality</li>
-                    <li>Modular design with reusable Web Components and clean separation of concerns</li>
-                    <li>Fully integrated CI/CD pipeline with GitHub Actions for build, test, and deployment automation
-                    </li>
-                    <li>Unit testing (Jest), static analysis (Codacy), linting (ESLint), and >70% code coverage
-                        enforcement</li>
-                </ul>
-
-                <p><strong>Technology Stack:</strong> HTML5, CSS3, JavaScript (ES6+), Web Components, GitHub Actions,
-                    Jest, ESLint, Codacy, Service Workers, Pokémon TCG API</p>
-
-                <p><strong>Development Process:</strong> Followed Agile methodologies with sprint planning, issue
-                    tracking, code reviews, and iterative delivery through GitHub Projects and pull requests.</p>
-
-                <p><strong>Challenges:</strong> Managing state across dynamic components, ensuring consistent data
-                    synchronization between frontend and API layers, and maintaining high code quality through
-                    continuous integration workflows.</p>
-
-                <p><strong>Accomplishments:</strong> Deployed a production-ready, mobile-responsive web application with
-                    a scalable architecture, developer-friendly tooling, and seamless user experience tailored to the
-                    TCG community.</p>
-            </article>
+            <div id="project-list" class="project-card-grid" aria-label="Project cards"></div>
         </section>
     </main>
-
-    <div id="project-modal" class="project-modal" hidden>
-        <div class="project-modal__backdrop" aria-hidden="true"></div>
-
-        <article class="project-modal__content" role="dialog" aria-modal="true">
-            <button type="button" class="project-modal__close" aria-label="Close project details">
-                &times;
-            </button>
-            <div class="project-modal__body"></div>
-        </article>
-    </div>
 
     <footer>
         <p><span>Copyright</span> 2025 Ethan Kook. <br>
             Built with HTML only<noscript> (JavaScript disabled)</noscript></p>
     </footer>
+
     <script src="theme-toggle.js" defer></script>
     <script src="view-transitions.js" defer></script>
+    <script src="projects.js" defer></script>
 </body>
-
 </html>

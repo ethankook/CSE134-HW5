@@ -573,3 +573,135 @@ body.has-modal {
 #projects article a {
   cursor: pointer;
 }
+
+#projects {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing-unit) * 1.25);
+}
+
+.project-card-grid,
+#project-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: calc(var(--spacing-unit) * 1.25);
+}
+
+project-card {
+  display: block;
+}
+
+#projects article.project-card {
+  border: none;
+  padding: 0;
+  box-shadow: none;
+  overflow: hidden;
+  max-height: none;
+}
+
+.project-card {
+  position: relative;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  background: var(--surface-color);
+  box-shadow: 0 4px 10px var(--shadow-color);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px var(--shadow-color);
+}
+
+.card-image {
+  display: block;
+  height: 100%;
+}
+
+.card-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.3rem;
+  padding: calc(var(--spacing-unit) * 0.75);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.15));
+  color: #ffffff;
+  opacity: 0;
+  transform: translateY(12%);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.project-card:hover .card-overlay,
+.project-card:focus-within .card-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-overlay h2 {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.card-overlay p {
+  font-size: 0.9rem;
+  margin: 0 0 0.4rem 0;
+}
+
+.card-overlay a {
+  align-self: flex-start;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  background: rgba(0, 0, 0, 0.25);
+  color: inherit;
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.card-overlay a:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.project-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: calc(var(--spacing-unit) * 0.5);
+}
+
+.project-controls button {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 0.75em 1.5em;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+  transition: background-color 0.3s, transform 0.2s ease;
+}
+
+.project-controls button:hover {
+  background-color: var(--primary-color);
+  transform: scale(1.1);
+}
+
+.projects-status {
+  font-size: 0.9rem;
+  color: var(--muted-text-color);
+}
+
+.projects-intro {
+  margin-bottom: calc(var(--spacing-unit) * 0.75);
+  color: var(--text-color);
+  max-width: 60ch;
+}

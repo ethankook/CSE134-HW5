@@ -1,5 +1,5 @@
 const LOCAL_STORAGE_KEY = "hw5-projects-local";
-const REMOTE_URL = "https://api.jsonbin.io/v3/b/6934fff943b1c97be9dce716";
+const REMOTE_URL = "https://api.jsonbin.io/v3/b/6935048fd0ea881f4017fc3e/latest";
 
 class ProjectCard extends HTMLElement {
     connectedCallback() {
@@ -42,12 +42,12 @@ function seedLocalStorageIfEmpty() {
             link: "https://github.com/ethankook/numart-backend"
         },
         {
-            id: 2,
-            title: "RISC Processor",
-            image: "images/RiscLogo.avif",
-            alt: "Custom RISC processor diagram",
-            description: "Custom RISC-style CPU with 8 registers and a compact instruction set implemented and simulated for education.",
-            link: "https://github.com/ethankook/RISC"
+                id: 2,
+                title: "RISC Processor",
+                image: "images/RiscLogo.avif",
+                alt: "Custom RISC processor diagram",
+                description: "Custom RISC-style CPU with 8 registers and a compact instruction set implemented and simulated for education.",
+                link: "https://github.com/ethankook/RISC"
         }
     ];
 
@@ -116,15 +116,20 @@ async function handleLoadRemote() {
         setStatus("Loading remote projects...");
         const response = await fetch(REMOTE_URL);
         if (!response.ok) {
-            throw new Error("Network error");
+            throw new Error("Network error: " + response.status);
         }
-        const data = await response.json();
-        renderProjects(data);
+
+        const json = await response.json();
+        const projects = json.record || json; // get the actual array
+
+        renderProjects(projects);
         setStatus("Loaded projects from remote data.");
     } catch (error) {
+        console.error(error);
         setStatus("Could not load remote projects. Check REMOTE_URL or your API.");
     }
 }
+
 
 function initProjectPage() {
     const localButton = document.getElementById("load-local");

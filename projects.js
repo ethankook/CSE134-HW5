@@ -1,5 +1,5 @@
 const LOCAL_STORAGE_KEY = "hw5-projects-local";
-const REMOTE_URL = "https://my-json-server.typicode.com/your-username/your-repo/projects";
+const REMOTE_URL = "https://api.jsonbin.io/v3/b/6934fff943b1c97be9dce716";
 
 class ProjectCard extends HTMLElement {
     connectedCallback() {
@@ -36,7 +36,7 @@ function seedLocalStorageIfEmpty() {
         {
             id: 1,
             title: "NumArt",
-            image: "images/NumArt-Demo.png",
+            image: "images/NumArtLogo.jpg",
             alt: "NumArt paint-by-numbers demo",
             description: "End-to-end paint-by-numbers pipeline that turns images into paintable templates and controls a Raspberry Pi paint mixer.",
             link: "https://github.com/ethankook/numart-backend"
@@ -44,18 +44,10 @@ function seedLocalStorageIfEmpty() {
         {
             id: 2,
             title: "RISC Processor",
-            image: "images/risc.png",
+            image: "images/RiscLogo.avif",
             alt: "Custom RISC processor diagram",
             description: "Custom RISC-style CPU with 8 registers and a compact instruction set implemented and simulated for education.",
             link: "https://github.com/ethankook/RISC"
-        },
-        {
-            id: 3,
-            title: "Pokémon TCG Collection Manager",
-            image: "images/pokemon-tcg.png",
-            alt: "Pokémon TCG web app interface",
-            description: "Web app for tracking Pokémon card collections using Web Components, APIs, and automated CI/CD.",
-            link: "https://github.com/ethankook/pokemon-tcg-collection"
         }
     ];
 

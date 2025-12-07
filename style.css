@@ -606,6 +606,7 @@ project-card {
   background: var(--surface-color);
   box-shadow: 0 4px 10px var(--shadow-color);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  aspect-ratio: 4 / 3;
 }
 
 .project-card:hover {
@@ -614,7 +615,7 @@ project-card {
 }
 
 .card-image {
-  display: block;
+  width: 100%;
   height: 100%;
 }
 
@@ -624,6 +625,7 @@ project-card {
   height: 100%;
   object-fit: cover;
 }
+
 
 .card-overlay {
   position: absolute;
@@ -704,4 +706,41 @@ project-card {
   margin-bottom: calc(var(--spacing-unit) * 0.75);
   color: var(--text-color);
   max-width: 60ch;
+}
+
+.crud-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.3fr);
+  gap: calc(var(--spacing-unit) * 1.5);
+  align-items: flex-start;
+  margin-top: var(--spacing-unit);
+}
+
+.crud-forms {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing-unit) * 1.25);
+}
+
+.crud-preview {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing-unit) * 0.75);
+}
+
+.crud-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.crud-card-id {
+  font-size: 0.8rem;
+  color: var(--muted-text-color);
+}
+
+@media (max-width: 900px) {
+  .crud-layout {
+    grid-template-columns: 1fr;
+  }
 }

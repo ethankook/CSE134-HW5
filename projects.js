@@ -149,3 +149,37 @@ if (document.readyState === "loading") {
 } else {
     initProjectPage();
 }
+
+
+function initProjectSearch() {
+    const searchInput = document.getElementById("project-search");
+    if (!searchInput) return;
+
+    searchInput.addEventListener("input", () => {
+        const query = searchInput.value.toLowerCase().trim();
+        const cards = document.querySelectorAll("#project-list project-card");
+
+        cards.forEach(card => {
+            const title = (card.getAttribute("title") || "").toLowerCase();
+            const description = (card.getAttribute("description") || "").toLowerCase();
+            const matches = title.includes(query) || description.includes(query);
+            card.style.display = matches ? "" : "none";
+        });
+    });
+}
+
+// call this inside initProjectPage
+function initProjectPage() {
+    const localButton = document.getElementById("load-local");
+    const remoteButton = document.getElementById("load-remote");
+
+    if (localButton) {
+        localButton.addEventListener("click", handleLoadLocal);
+    }
+
+    if (remoteButton) {
+        remoteButton.addEventListener("click", handleLoadRemote);
+    }
+
+    initProjectSearch();
+}
